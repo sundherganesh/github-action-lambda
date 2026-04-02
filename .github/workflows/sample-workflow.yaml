@@ -1,0 +1,18 @@
+name: Simple Message Workflow
+
+# Define triggers for the workflow
+on:
+  workflow_dispatch: # Allows manual trigger from the Actions tab
+  pull_request:
+    branches:
+      - main       # Triggers on PRs targeting the main branch
+
+jobs:
+  display-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Show Message
+        run: echo "The workflow was triggered by a ${{ github.event_name }} event!"
